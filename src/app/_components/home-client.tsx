@@ -707,11 +707,11 @@ function HomeContent({ resolvedSponsors }: HomeContentProps) {
   const [vsCodeKeyLoading, setVsCodeKeyLoading] = useState(false);
   const [vsCodeKeyCopied, setVsCodeKeyCopied] = useState(false);
   const [codingPanelOpen, setCodingPanelOpen] = useState(false);
-  // User override: keep the city lights on even when nobody is coding.
-  const [forceLightsOn, setForceLightsOn] = useState(false);
+  // City lights are on by default; the user can opt out and we remember it.
+  const [forceLightsOn, setForceLightsOn] = useState(true);
   useEffect(() => {
     try {
-      if (localStorage.getItem("gc_force_lights_on") === "1") setForceLightsOn(true);
+      if (localStorage.getItem("gc_force_lights_on") === "0") setForceLightsOn(false);
     } catch { /* ignore */ }
   }, []);
   const toggleForceLightsOn = useCallback(() => {
